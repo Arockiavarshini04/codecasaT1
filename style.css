@@ -1,0 +1,167 @@
+/*we can always copy paste the color of the code...so creating a variable for it*/
+root{
+    /*variable is created*/
+    --wine:#9A3B3B;
+    --nude:#C08261;
+    --lnude:#E2C799;
+    --cream:#F2ECBE;
+    /*color code are selected from the ..wesite color palettes*/
+    /*we know that variables are created ...so if neccesary...it can be used*/
+    /*for that ....color:var(--variable name) is used*/
+
+
+
+}
+
+
+
+
+body,h2{
+    /* to reset the pre-defined margins*/
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.landing{
+    /*to add image*/
+    background-image: url('../codecasaT1/fryingimage.jpg');
+    /*used to display the image properly*/
+    background-size: cover;
+    /*to display it in the center**/
+    background-position: center;
+    /*image is displayed acc to our content ...so tochange it ..display it full screen*/
+    height: 100vh;
+    color: #F2ECBE;
+
+}
+/*we know that the link(anchor tag) are present in nav */
+header a{
+    /*links which are underlined are removed*/
+    text-decoration: none;
+    color:white ;
+}
+/*to make everything to align in one straight line/row */
+header{
+    /*why? header..coz we want everything inside headershould be in a single row*/
+    /*arranged in single row*/
+    display: flex;
+    /*space*/
+    padding: 1em;
+
+}
+/*we want the logo to be occupy 3/4 space*/
+#logo{
+    /*USING THIS the logo and the menu are separate to two corners*/
+    flex: 3;
+    /*need larger font*/
+    font-size: 2em;
+}
+nav{
+    /*coz menu and loc need 1/4 space*/
+    flex: 2;
+    display: flex;/*<A> considered has another flex*/
+
+}
+nav a{
+    flex: 1;
+}
+/* anything inside nav ..should change while hovering*/
+nav a:hover{
+    color:darkgray;
+}
+.maintext{
+    /*everything here is in single row*/
+    display: flex;
+    /* to display one after another*/
+    flex-direction: column;
+    /*maintext height*/
+    height: 50vh;
+    /*text are at the top west ...to bring them to the center*/
+    justify-content: center;
+    /*content is near the edge of left side...to leave some space*/
+    padding: 2em; 
+}
+.tagline1{
+    color: #E2C799;
+    font-size: 2.5em;
+}
+.tagline2{
+    color: #F2ECBE;
+}
+/*div inside maintext kula distance venum*/
+.maintext div{
+    margin-top:25px;
+}
+/*buuton styling*/
+.maintext button{
+    width: 20vw;
+    margin-top: 2em;
+    border-radius: 10px;
+    padding: .7em;
+    background-color:#C08261;
+    color: #F2ECBE;
+}
+.menu{
+    display: grid;
+    /*to place the menu in cloumn wise*/
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    background: linear-gradient(to right,rgb(100,100,100),rgb(54, 54, 48));
+    color:#F2ECBE;
+
+}
+#menuheading,#locheading{
+    background: linear-gradient(to right,rgb(100,100,100),rgb(54,54,48));
+    font-size: 2.5em;
+    color: #E2C799;
+    /*therefore the headings should be placed at the center*/
+    display: flex;
+    justify-content: center;
+}
+.menu th{
+    color:aqua;
+    font-size: 1.8em;
+}
+/*therefore the menu box is not occuping the full space*/
+table{
+    /*starter,main dish,chats will occupy the full space*/
+    width: 100%;
+    padding: 1em;
+}
+/*making each item inside the menu has indiv flex box*/
+.menu tr{
+    display: flex;justify-content: center;
+    /* to make space b/t menu heading and the item*/
+    margin-top: .8em;
+}
+/*therefore inside tr there are two td ...so to selct the 1st*/
+.menu td:nth-child(1){
+    flex: 1;
+    justify-self: left;
+    
+}
+.menu td:nth-child(2){
+    justify-self: right;/*to display it in the right most*/
+}
+.maindish{
+    grid-row: span 2;
+}
+.location{
+    background: linear-gradient(to right,rgb(100,100,100),rgb(54, 54, 48));
+    color: aliceblue;
+    display: flex;/*to display all the locationin asingle row*/
+    flex-wrap: wrap;
+}
+.location h2{
+    color: aqua;
+    margin-bottom: .8em;
+}
+.location div{
+    /*tohave equall space for all the location*/
+    flex: 1;
+    padding: 1em;
+    min-width:220px;
+}
+footer{
+    background-color:#9A3B3B;
+    color: #E2C799;
+    padding: .25em 1em;
+}
