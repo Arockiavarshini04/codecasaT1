@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>website</title>
+    <style type="text/css">
+        *{
+            font-family:'poppins',sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color:darksalmon;
+        }
+        header{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 99;
+            background-color: crimson;
+
+        }
+        .nav{
+            max-width: 1200px;
+            margin: auto;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo{
+            font-size: 1.5rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: aliceblue;
+        }
+        .box{
+            color: aliceblue;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+        .cart-count{
+            position: absolute;
+            background-color: coral;
+            top: 4px;
+            right: 1px;
+            padding: 3px;
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            border-radius: 50%;
+            z-index: 99;
+        }
+        #cart-icon{
+            font-size: 1em;
+            cursor: pointer;
+            padding-top: 10px;
+        }
+        img{
+            width: 100%;
+        }
+        .container{
+            max-width: 1200px;
+            padding: 4rem;
+        }
+        h2.title{
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: antiquewhite;
+                
+        }
+        .shop-content{
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(220px,auto));
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+        }
+        .food-box{
+            position: relative;
+            background-color: aliceblue;
+            padding: 10px;
+            box-shadow: 0 1px 4px rgba(40, 37, 37, 0.1);
+            border-radius: 3px;
+        }
+        .pic{
+            overflow: hidden;
+
+        }
+        .pic:hover img{
+            transform: scale(1.5);
+        }
+        .food-img{
+            transition: 0.2s;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+        .food-price{
+            font-weight: 500;
+        }
+        .add-cart{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: brown;
+            color: azure;
+            padding: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        .add-cart:hover{
+            background-color: red;
+        }
+        .cart{
+            position: fixed;
+            top: 0;
+            right: -100;
+            width: 400px;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 20px;
+            background-color: aliceblue;
+            box-shadow: 0 1px 4px rgba(40, 37, 37, 0.1);
+            z-index: 100;
+        }
+        .cart-active{
+            right: 0;
+            transition: 0.5s;
+        }
+        .cart-title{
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            padding-bottom: 10px;
+            border-bottom: 1px solid black;
+        }
+        .cart-box{
+            display: grid;
+            /*therefore 30 for img,50 for content and 20 for the sym*/
+            grid-template-columns: 30% 50% 20%;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            border-bottom:  1px solid black;
+            padding-bottom: 10px;
+        }
+        .cart-img{
+            width: 75px;
+            height: 75px;
+            object-fit: cover;
+            border: 2px solid black;
+            padding: 5px;
+        }
+        .detail-box{
+            display: grid;
+            row-gap: 0.5rem;
+        }
+        .price-box{
+            display: flex;
+            justify-content: space-between;
+        }
+        .cart-food-title{
+            font-size: 1rem;
+            text-transform: uppercase;
+            color:brown;
+            font-weight: 500;
+
+        }
+        .cart-price{
+            font-weight: 500;
+        }
+        .cart-quantity{
+            border:  1px solid black;
+            outline: none;
+            width: 2.4rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .cart-remove{
+            font-size: 24px;
+            color: brown;
+            cursor: pointer;
+        }
+        .total{
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+
+        }
+        .total-title{
+            font-size: 1rem;
+            font-weight: 600;
+
+        }
+        .total-price{
+            margin-left: 0.5rem;
+
+        }
+        .btn-buy{
+            padding: 12px 20px;
+            background-color: cornflowerblue;
+            color: aliceblue;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+
+        }
+        #cart-close{
+            position: absolute;
+            top: 1rem;
+            right: 0.8rem;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+    </style>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <a href="#" class="logo"><ion-icon name="restaurant-outline"></ion-icon>HELLO</a>
+            <div class="box">
+                <div class="cart-count">0</div>
+                <ion-icon name="cart-sharp" id="cart-icon"></ion-icon>
+            </div>
+
+          </div>
+    </header>
+
+    <div class="container">
+        <h2 class="title">MENU</h2>
+        <div class="shop-content">
+            
+            
+            <div class="food-box">
+                <div class="pic">
+                    <img src="dosa.jpg" class="food-img">
+                    <h2 class="food-title">DOSA</h2>
+                    <span class="food-price">Rs.50</span>
+                    <ion-icon name="cart-sharp" class="add-cart"></ion-icon>
+                </div>
+            </div> 
+
+            <div class="food-box">
+                <div class="pic">
+                    <img src="idly.jpg" class="food-img">
+                    <h2 class="food-title">IDLY</h2>
+                    <span class="food-price">Rs.60</span>
+                    <ion-icon name="cart-sharp" class="add-cart"></ion-icon>
+                </div>
+            </div>
+
+            <div class="food-box">
+                <div class="pic">
+                    <img src="chickenbriyani.jpg" class="food-img">
+                    <h2 class="food-title">CHICKEN BRIYANI</h2>
+                    <span class="food-price">Rs.180</span>
+                    <ion-icon name="cart-sharp" class="add-cart"></ion-icon>
+                </div>
+            </div>
+
+            <div class="food-box">
+                <div class="pic">
+                    <img src="chicken fry.jpg" class="food-img">
+                    <h2 class="food-title">CHICKEN FRY</h2>
+                    <span class="food-price">Rs.150</span>
+                    <ion-icon name="cart-sharp" class="add-cart"></ion-icon>
+                </div>
+            </div>
+
+
+            <div class="food-box">
+                <div class="pic">
+                    <img src="chococake.jpg" class="food-img">
+                    <h2 class="food-title">CHOCOLATE CAKE</h2>
+                    <span class="food-price">Rs.100</span>
+                    <ion-icon name="cart-sharp" class="add-cart"></ion-icon>
+                </div>
+            </div>
+
+            <div class="food-box">
+                <div class="pic">
+                    <img src="laddu.jpg" class="food-img">
+                    <h2 class="food-title">LADDU</h2>
+                    <span class="food-price">Rs.20</span>
+                    <ion-icon name="cart-sharp"class="add-cart"></ion-icon>
+                </div>
+            </div>
+
+            <div class="food-box">
+                <div class="pic">
+                    <img src="icecream.jpg" class="food-img">
+                    <h2 class="food-title">ICE CREAM</h2>
+                    <span class="food-price">Rs.80</span>
+                    <ion-icon name="cart-sharp" class="add-cart"></ion-icon>
+                </div>
+            </div>
+
+            <div class="food-box">
+                <div class="pic">
+                    <img src="coffee.jpg" class="food-img">
+                    <h2 class="food-title">CAPPUCCINO</h2>
+                    <span class="food-price">Rs.120</span>
+                    <ion-icon name="cart-sharp" class="add-cart"></ion-icon>
+                </div>
+            </div>
+
+            <div class="food-box">
+                <div class="pic">
+                    <img src="popcorn.jpg" class="food-img">
+                    <h2 class="food-title">POPCORN</h2>
+                    <span class="food-price">Rs.120</span>
+                    <ion-icon name="cart-sharp" class="add-cart"></ion-icon>
+                </div>
+            </div>
+
+            <div class="food-box">
+                <div class="pic">
+                    <img src="fruitcake.jpg" class="food-img">
+                    <h2 class="food-title"> FRUIT CAKE</h2>
+                    <span class="food-price">Rs.80</span>
+                    <ion-icon name="cart-sharp" class="add-cart"></ion-icon>
+                </div>
+            </div>
+
+            <div class="food-box">
+                <div class="pic">
+                    <img src="buger.jpg" class="food-img">
+                    <h2 class="food-title">BUGER</h2>
+                    <span class="food-price">Rs.120</span>
+                    <ion-icon name="cart-sharp" class="add-cart"></ion-icon>
+                </div>
+            </div>
+
+
+        </div>
+</div>
+</body>
+</html>
